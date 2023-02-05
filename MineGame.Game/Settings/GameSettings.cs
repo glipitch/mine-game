@@ -1,9 +1,8 @@
-﻿namespace MineGame.Game.Settings
+﻿namespace MineGame.Game.Settings;
+
+public record GameSettings
 {
-    public record GameSettings
-    {
-        public Dimensions? Dimensions { get; set; }
-        public MineCountRange? MineCountRange { get; set; }
-        public int Lives { get; set; }
-    }
+    public Dimensions? Dimensions { get; set; }
+    public MineCountRange? MineCountRange { get; set; }
+    public int Lives { get; set; }
 }

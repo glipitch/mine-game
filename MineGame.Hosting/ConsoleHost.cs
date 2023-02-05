@@ -4,40 +4,39 @@ using MineGame.Game.Models;
 
 using static System.Console;
 
-namespace MineGame.Hosting
+namespace MineGame.Hosting;
+
+public class ConsoleHost
 {
-    public class ConsoleHost
+    private readonly GameEngine gameEngine;
+    private readonly StandardKeyMap keyMap;
+    private readonly MinimalConsoleTextOutput consoleTextOutput;
+    private bool exit;
+
+    public ConsoleHost(GameEngine gameEngine, StandardKeyMap keyMap, MinimalConsoleTextOutput consoleTextOutput)
     {
-        private readonly GameEngine gameEngine;
-        private readonly StandardKeyMap keyMap;
-        private readonly MinimalConsoleTextOutput consoleTextOutput;
-        private bool exit;
+        this.gameEngine = gameEngine;
+        this.keyMap = keyMap;
+        this.consoleTextOutput = consoleTextOutput;
+        this.gameEngine.OutputEmmited += HandleOutput!;
+    }
 
-        public ConsoleHost(GameEngine gameEngine, StandardKeyMap keyMap, MinimalConsoleTextOutput consoleTextOutput)
+    private void HandleOutput(object sender, OutputEventArgs e)
+    {
+        Write(consoleTextOutput.Convert(e));
+        if (e.Output == Output.Exited)
         {
-            this.gameEngine = gameEngine;
-            this.keyMap = keyMap;
-            this.consoleTextOutput = consoleTextOutput;
-            this.gameEngine.OutputEmmited += HandleOutput!;
+            exit = true;
         }
+    }
 
-        private void HandleOutput(object sender, OutputEventArgs e)
+    public void Run()
+    {
+        WriteLine(keyMap);
+        gameEngine.Start();
+        while (!exit)
         {
-            Write(consoleTextOutput.Convert(e));
-            if (e.Output == Output.Exited)
-            {
-                exit = true;
-            }
-        }
-
-        public void Run()
-        {
-            WriteLine(keyMap);
-            gameEngine.Start();
-            while (!exit)
-            {
-                gameEngine.ReceiveInput(keyMap.Convert(ReadKey().Key));
-            }
+            gameEngine.ReceiveInput(keyMap.Convert(ReadKey().Key));
         }
     }
 }

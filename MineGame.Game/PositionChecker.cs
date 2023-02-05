@@ -1,28 +1,27 @@
 ﻿using MineGame.Game.Models;
 using MineGame.Game.Settings;
 
-namespace MineGame.Game
+namespace MineGame.Game;
+
+public class PositionChecker
 {
-    public class PositionChecker
+    private readonly GameSettings settings;
+
+    public PositionChecker(GameSettings settings)
     {
-        private readonly GameSettings settings;
+        this.settings = settings;
+    }
 
-        public PositionChecker(GameSettings settings)
+    public bool IsLegal(Location position)
+    {
+        if (position.Column < 0 || position.Column > settings.Dimensions!.Width - 1)
         {
-            this.settings = settings;
+            return false;
         }
-
-        public bool IsLegal(Location position)
+        if (position.Row < 0 || position.Row > settings.Dimensions.Height - 1)
         {
-            if (position.Column < 0 || position.Column > settings.Dimensions!.Width - 1)
-            {
-                return false;
-            }
-            if (position.Row < 0 || position.Row > settings.Dimensions.Height - 1)
-            {
-                return false;
-            }
-            return true;
+            return false;
         }
+        return true;
     }
 }

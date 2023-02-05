@@ -1,4 +1,3 @@
-﻿namespace MineGame.Game.Models
-{
-    public record Location(int Column, int Row);
-}
+﻿namespace MineGame.Game.Models;
+
+public record Location(int Column, int Row);

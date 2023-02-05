@@ -1,9 +1,8 @@
-﻿namespace MineGame.Game.Enums
+﻿namespace MineGame.Game.Enums;
+
+public enum Input
 {
-    public enum Input
-    {
-        None, Right, Left, Up, Down,
-        Exit,
-        Reset
-    }
+    None, Right, Left, Up, Down,
+    Exit,
+    Reset
 }

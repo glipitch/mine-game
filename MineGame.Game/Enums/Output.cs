@@ -1,13 +1,12 @@
-﻿namespace MineGame.Game.Enums
+﻿namespace MineGame.Game.Enums;
+
+public enum Output
 {
-    public enum Output
-    {
-        Started,
-        Exited,
-        Invalid,
-        Miss,
-        Hit,
-        Lost,
-        Won
-    }
+    Started,
+    Exited,
+    Invalid,
+    Miss,
+    Hit,
+    Lost,
+    Won
 }

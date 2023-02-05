@@ -1,4 +1,3 @@
-﻿namespace MineGame.Game.Settings
-{
-    public record Dimensions(int Width, int Height);
-}
+﻿namespace MineGame.Game.Settings;
+
+public record Dimensions(int Width, int Height);
