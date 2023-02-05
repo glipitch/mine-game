@@ -25,4 +25,4 @@ var serviceProvider = new ServiceCollection()
 
 var host = serviceProvider.GetService<ConsoleHost>();
 
-host.Run();
+host!.Run();

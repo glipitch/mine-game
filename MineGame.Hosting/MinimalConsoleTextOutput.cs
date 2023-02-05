@@ -5,9 +5,9 @@ namespace MineGame.Hosting
 {
     public class MinimalConsoleTextOutput
     {
-        private readonly ChessCoordinateConverter coordinateConverter;
+        private readonly ChessCoordinateConverter? coordinateConverter;
 
-        public MinimalConsoleTextOutput(ChessCoordinateConverter coordinateConverter = null)
+        public MinimalConsoleTextOutput(ChessCoordinateConverter? coordinateConverter = null)
         {
             this.coordinateConverter = coordinateConverter;
         }
@@ -15,10 +15,10 @@ namespace MineGame.Hosting
         public string Convert(OutputEventArgs e) =>
             e.Output switch
             {
-                Output.Started => $"Game started\n{e.Dimensions}\nInitial position: {ConvertCoordinates(e.Location)}\nLives: {e.Lives}\n",
+                Output.Started => $"Game started\n{e.Dimensions}\nInitial position: {ConvertCoordinates(e.Location!)}\nLives: {e.Lives}\n",
                 Output.Exited => "Game exiting\n",
-                Output.Hit => $"Hit {ConvertCoordinates(e.Location)} Moves: {e.Moves} Lives: {e.Lives}\n",
-                Output.Miss => $"Miss {ConvertCoordinates(e.Location)} Moves: {e.Moves} Lives: {e.Lives}\n",
+                Output.Hit => $"Hit {ConvertCoordinates(e.Location!)} Moves: {e.Moves} Lives: {e.Lives}\n",
+                Output.Miss => $"Miss {ConvertCoordinates(e.Location!)} Moves: {e.Moves} Lives: {e.Lives}\n",
                 Output.Won => $"Won\n",
                 Output.Lost => $"Lost\n",
                 Output.Invalid => string.Empty,

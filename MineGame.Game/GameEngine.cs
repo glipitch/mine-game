@@ -13,8 +13,8 @@ namespace MineGame.Game
         private int moves;
         private int livesRemaining;
 
-        private Location location;
-        private IEnumerable<Location> mines;
+        private Location? location;
+        private IEnumerable<Location>? mines;
         private bool gameOver;
 
         public GameEngine(Random random, Minelayer minelayer, GameSettings settings, PositionChecker positionChecker)
@@ -25,7 +25,7 @@ namespace MineGame.Game
             this.positionChecker = positionChecker;
         }
 
-        public event EventHandler<OutputEventArgs> OutputEmmited;
+        public event EventHandler<OutputEventArgs>? OutputEmmited;
 
         public void ReceiveInput(Input input)
         {
@@ -65,7 +65,7 @@ namespace MineGame.Game
         {
             moves++;
             location = newPosition;
-            if (mines.Contains(location))
+            if (mines!.Contains(location))
             {
                 livesRemaining--;
 
@@ -81,7 +81,7 @@ namespace MineGame.Game
             {
                 EmitOutput(Output.Miss);
             }
-            if (location.Column == settings.Dimensions.Width - 1)
+            if (location.Column == settings.Dimensions!.Width - 1)
             {
                 EmitOutput(Output.Won);
                 gameOver = true;
@@ -90,10 +90,10 @@ namespace MineGame.Game
 
         private Location CalculateNewPosition(Input input) => input switch
         {
-            Input.Left => new Location(location.Column - 1, location.Row),
-            Input.Right => new Location(location.Column + 1, location.Row),
-            Input.Up => new Location(location.Column, location.Row + 1),
-            Input.Down => new Location(location.Column, location.Row - 1),
+            Input.Left => new Location(location!.Column - 1, location.Row),
+            Input.Right => new Location(location!.Column + 1, location.Row),
+            Input.Up => new Location(location!.Column, location.Row + 1),
+            Input.Down => new Location(location!.Column, location.Row - 1),
             _ => throw new ArgumentException("Invalid location"),
         };
 
@@ -103,7 +103,7 @@ namespace MineGame.Game
             moves = 0;
             livesRemaining = settings.Lives;
             //generate initial position on column 0
-            location = new Location(0, random.Next(settings.Dimensions.Height + 1));
+            location = new Location(0, random.Next(settings.Dimensions!.Height + 1));
 
             EmitOutput(Output.Started);
 

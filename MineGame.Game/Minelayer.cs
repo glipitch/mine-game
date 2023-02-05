@@ -16,11 +16,11 @@ namespace MineGame.Game
 
         public IEnumerable<Location> GenerateField()
         {
-            var mineCount = random.Next(settings.MineCountRange.Minimum, settings.MineCountRange.Maximum + 1);
+            var mineCount = random.Next(settings.MineCountRange!.Minimum, settings.MineCountRange.Maximum + 1);
             var mines = new HashSet<Location>();
             while (mines.Count < mineCount)
             {
-                var mine = new Location(random.Next(settings.Dimensions.Width), random.Next(settings.Dimensions.Height));
+                var mine = new Location(random.Next(settings.Dimensions!.Width), random.Next(settings.Dimensions.Height));
                 if (!mines.Contains(mine))
                 {
                     mines.Add(mine);

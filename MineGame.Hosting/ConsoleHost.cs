@@ -18,7 +18,7 @@ namespace MineGame.Hosting
             this.gameEngine = gameEngine;
             this.keyMap = keyMap;
             this.consoleTextOutput = consoleTextOutput;
-            this.gameEngine.OutputEmmited += HandleOutput;
+            this.gameEngine.OutputEmmited += HandleOutput!;
         }
 
         private void HandleOutput(object sender, OutputEventArgs e)

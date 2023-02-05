@@ -7,9 +7,9 @@ namespace MineGame.Game.Models
     {
         internal OutputEventArgs(
             Output output,
-            Location location = null,
+            Location? location = null,
             int? lives = null,
-            Dimensions dimensions = null,
+            Dimensions? dimensions = null,
             int? moves = null)
         {
             Output = output;
@@ -19,9 +19,9 @@ namespace MineGame.Game.Models
             Moves = moves;
         }
 
-        public Location Location { get; }
+        public Location? Location { get; }
         public int? Lives { get; }
-        public Dimensions Dimensions { get; }
+        public Dimensions? Dimensions { get; }
         public int? Moves { get; }
         public Output Output { get; }
     }

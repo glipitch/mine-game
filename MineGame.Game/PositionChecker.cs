@@ -5,7 +5,7 @@ namespace MineGame.Game
 {
     public class PositionChecker
     {
-        private GameSettings settings;
+        private readonly GameSettings settings;
 
         public PositionChecker(GameSettings settings)
         {
@@ -14,7 +14,7 @@ namespace MineGame.Game
 
         public bool IsLegal(Location position)
         {
-            if (position.Column < 0 || position.Column > settings.Dimensions.Width - 1)
+            if (position.Column < 0 || position.Column > settings.Dimensions!.Width - 1)
             {
                 return false;
             }
