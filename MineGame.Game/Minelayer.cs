@@ -21,10 +21,7 @@ public class Minelayer
         while (mines.Count < mineCount)
         {
             var mine = new Location(random.Next(settings.Dimensions!.Width), random.Next(settings.Dimensions.Height));
-            if (!mines.Contains(mine))
-            {
-                mines.Add(mine);
-            }
+            mines.Add(mine);
         }
 
         return mines;
