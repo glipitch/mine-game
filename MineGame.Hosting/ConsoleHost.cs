@@ -18,7 +18,7 @@ public class ConsoleHost
         this.gameEngine = gameEngine;
         this.keyMap = keyMap;
         this.consoleTextOutput = consoleTextOutput;
-        this.gameEngine.OutputEmmited += HandleOutput!;
+        this.gameEngine.OutputEmitted += HandleOutput!;
     }
 
     private void HandleOutput(object sender, OutputEventArgs e)

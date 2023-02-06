@@ -25,7 +25,7 @@ public class GameEngine
         this.positionChecker = positionChecker;
     }
 
-    public event EventHandler<OutputEventArgs>? OutputEmmited;
+    public event EventHandler<OutputEventArgs>? OutputEmitted;
 
     public void ReceiveInput(Input input)
     {
@@ -115,19 +115,19 @@ public class GameEngine
         switch (output)
         {
             case Output.Started:
-                OutputEmmited?.Invoke(this, new OutputEventArgs(output, location, settings.Lives, settings.Dimensions));
+                OutputEmitted?.Invoke(this, new OutputEventArgs(output, location, settings.Lives, settings.Dimensions));
                 return;
 
             case Output.Hit:
             case Output.Miss:
-                OutputEmmited?.Invoke(this, new OutputEventArgs(output, location, livesRemaining, moves: moves));
+                OutputEmitted?.Invoke(this, new OutputEventArgs(output, location, livesRemaining, moves: moves));
                 return;
 
             case Output.Exited:
             case Output.Invalid:
             case Output.Won:
             case Output.Lost:
-                OutputEmmited?.Invoke(this, new OutputEventArgs(output));
+                OutputEmitted?.Invoke(this, new OutputEventArgs(output));
                 return;
         }
     }
