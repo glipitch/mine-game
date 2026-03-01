@@ -1,6 +1,5 @@
 using MineGame.Game.Enums;
 using MineGame.Game.Settings;
-
 namespace MineGame.Game.Models;
 
 public class OutputEventArgs : EventArgs
@@ -18,7 +17,6 @@ public class OutputEventArgs : EventArgs
         Dimensions = dimensions;
         Moves = moves;
     }
-
     public Location? Location { get; }
     public int? Lives { get; }
     public Dimensions? Dimensions { get; }

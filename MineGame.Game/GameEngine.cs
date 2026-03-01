@@ -1,20 +1,16 @@
 using MineGame.Game.Enums;
 using MineGame.Game.Models;
 using MineGame.Game.Settings;
-
 namespace MineGame.Game;
 
 public class GameEngine(Random random, Minelayer minelayer, GameSettings settings, PositionChecker positionChecker)
 {
     private int moves;
     private int livesRemaining;
-
     private Location? location;
     private IEnumerable<Location>? mines;
     private bool gameOver;
-
     public event EventHandler<OutputEventArgs>? OutputEmitted;
-
     public void ReceiveInput(Input input)
     {
         switch (input)
@@ -22,33 +18,26 @@ public class GameEngine(Random random, Minelayer minelayer, GameSettings setting
             case Input.Reset:
                 Start();
                 return;
-
             case Input.None:
                 return;
-
             case Input.Exit:
                 EmitOutput(Output.Exited);
                 return;
-
             default:
-
                 if (gameOver)
                 {
                     return;
                 }
                 var newPosition = CalculateNewPosition(input);
-
                 if (!positionChecker.IsLegal(newPosition))
                 {
                     EmitOutput(Output.Invalid);
                     return;
                 }
-
                 Move(newPosition);
                 return;
         }
     }
-
     private void Move(Location newPosition)
     {
         moves++;
@@ -56,7 +45,6 @@ public class GameEngine(Random random, Minelayer minelayer, GameSettings setting
         if (mines!.Contains(location))
         {
             livesRemaining--;
-
             EmitOutput(Output.Hit);
             if (livesRemaining < 0)
             {
@@ -75,7 +63,6 @@ public class GameEngine(Random random, Minelayer minelayer, GameSettings setting
             gameOver = true;
         }
     }
-
     private Location CalculateNewPosition(Input input) => input switch
     {
         Input.Left => new Location(location!.Column - 1, location.Row),
@@ -84,7 +71,6 @@ public class GameEngine(Random random, Minelayer minelayer, GameSettings setting
         Input.Down => new Location(location!.Column, location.Row - 1),
         _ => throw new ArgumentException("Invalid location"),
     };
-
     public void Start()
     {
         gameOver = false;
@@ -92,12 +78,9 @@ public class GameEngine(Random random, Minelayer minelayer, GameSettings setting
         livesRemaining = settings.Lives;
         //generate initial position on column 0
         location = new Location(0, random.Next(settings.Dimensions!.Height + 1));
-
         EmitOutput(Output.Started);
-
         mines = minelayer.GenerateField();
     }
-
     private void EmitOutput(Output output)
     {
         switch (output)
@@ -105,12 +88,10 @@ public class GameEngine(Random random, Minelayer minelayer, GameSettings setting
             case Output.Started:
                 OutputEmitted?.Invoke(this, new OutputEventArgs(output, location, settings.Lives, settings.Dimensions));
                 return;
-
             case Output.Hit:
             case Output.Miss:
                 OutputEmitted?.Invoke(this, new OutputEventArgs(output, location, livesRemaining, moves: moves));
                 return;
-
             case Output.Exited:
             case Output.Invalid:
             case Output.Won:

@@ -1,7 +1,6 @@
 using MineGame.Game;
 using MineGame.Game.Models;
 using MineGame.Game.Settings;
-
 namespace MineGame.Tests;
 
 public class PositionCheckerTests
@@ -17,7 +16,6 @@ public class PositionCheckerTests
         var actual = sut.IsLegal(new Location(column, row));
         await Assert.That(actual).IsTrue();
     }
-
     [Test]
     [Arguments(2, 2, -1, 0)]
     [Arguments(2, 2, 2, 0)]

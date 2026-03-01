@@ -1,6 +1,5 @@
 using MineGame.Game.Enums;
 using MineGame.Game.Models;
-
 namespace MineGame.Hosting;
 
 public class MinimalConsoleTextOutput(ChessCoordinateConverter? coordinateConverter = null)
@@ -17,7 +16,6 @@ public class MinimalConsoleTextOutput(ChessCoordinateConverter? coordinateConver
             Output.Invalid => string.Empty,
             _ => throw new NotImplementedException(),
         };
-
     public string ConvertCoordinates(Location location)
         => coordinateConverter == null
         ? location.ToString()

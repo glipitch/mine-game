@@ -1,6 +1,5 @@
 using MineGame.Game.Models;
 using MineGame.Hosting;
-
 namespace MineGame.Tests;
 
 public class ChessCoordinatesConverterTests
@@ -14,7 +13,6 @@ public class ChessCoordinatesConverterTests
         var actual = ChessCoordinateConverter.Convert(new Location(column, row));
         await Assert.That(actual).IsEqualTo(expected);
     }
-
     [Test]
     public async Task InvalidLocation_Throws_ArgumentException()
     {

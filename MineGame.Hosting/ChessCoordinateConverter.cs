@@ -1,12 +1,10 @@
 using MineGame.Game.Models;
-
 namespace MineGame.Hosting;
 
 public class ChessCoordinateConverter
 {
     private const int UpperCaseAUnicode = 65;
     private const int HighestColumnAllowed = 25;
-
     public static string Convert(Location location)
     {
         if (location.Column > HighestColumnAllowed)
