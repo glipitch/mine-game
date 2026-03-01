@@ -1,4 +1,4 @@
-﻿using MineGame.Game.Enums;
+using MineGame.Game.Enums;
 
 namespace MineGame.Hosting;
 
@@ -9,8 +9,8 @@ public class StandardKeyMap
         return "Restart: F5\nExit: F4\nMove: arrow keys\n";
     }
 
-    public static Input Convert(ConsoleKey key) =>
-        key switch
+    public static Input Convert(ConsoleKey key)
+        => key switch
         {
             ConsoleKey.F5 => Input.Reset,
             ConsoleKey.F4 => Input.Exit,

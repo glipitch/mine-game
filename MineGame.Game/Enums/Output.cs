@@ -1,4 +1,4 @@
-﻿namespace MineGame.Game.Enums;
+namespace MineGame.Game.Enums;
 
 public enum Output
 {

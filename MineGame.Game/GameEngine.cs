@@ -1,4 +1,4 @@
-﻿using MineGame.Game.Enums;
+using MineGame.Game.Enums;
 using MineGame.Game.Models;
 using MineGame.Game.Settings;
 

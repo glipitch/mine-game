@@ -1,3 +1,3 @@
-﻿namespace MineGame.Game.Settings;
+namespace MineGame.Game.Settings;
 
 public record MineCountRange(int Minimum, int Maximum);

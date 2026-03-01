@@ -1,4 +1,4 @@
-﻿namespace MineGame.Game.Settings;
+namespace MineGame.Game.Settings;
 
 public record GameSettings
 {

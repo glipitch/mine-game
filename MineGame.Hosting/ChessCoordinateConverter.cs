@@ -1,4 +1,4 @@
-﻿using MineGame.Game.Models;
+using MineGame.Game.Models;
 
 namespace MineGame.Hosting;
 

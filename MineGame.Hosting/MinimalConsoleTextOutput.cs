@@ -1,12 +1,12 @@
-﻿using MineGame.Game.Enums;
+using MineGame.Game.Enums;
 using MineGame.Game.Models;
 
 namespace MineGame.Hosting;
 
 public class MinimalConsoleTextOutput(ChessCoordinateConverter? coordinateConverter = null)
 {
-    public string Convert(OutputEventArgs e) =>
-        e.Output switch
+    public string Convert(OutputEventArgs e)
+        => e.Output switch
         {
             Output.Started => $"Game started\n{e.Dimensions}\nInitial position: {ConvertCoordinates(e.Location!)}\nLives: {e.Lives}\n",
             Output.Exited => "Game exiting\n",
