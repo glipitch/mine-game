@@ -1,7 +1,5 @@
 ﻿using MineGame.Game.Enums;
 
-using System.Diagnostics.CodeAnalysis;
-
 namespace MineGame.Hosting;
 
 public class StandardKeyMap
@@ -11,8 +9,7 @@ public class StandardKeyMap
         return "Restart: F5\nExit: F4\nMove: arrow keys\n";
     }
 
-    [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "<Pending>")]
-    public Input Convert(ConsoleKey key) =>
+    public static Input Convert(ConsoleKey key) =>
         key switch
         {
             ConsoleKey.F5 => Input.Reset,

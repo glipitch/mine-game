@@ -3,17 +3,8 @@ using MineGame.Game.Settings;
 
 namespace MineGame.Game;
 
-public class Minelayer
+public class Minelayer(Random random, GameSettings settings)
 {
-    private readonly GameSettings settings;
-    private readonly Random random;
-
-    public Minelayer(Random random, GameSettings settings)
-    {
-        this.settings = settings;
-        this.random = random;
-    }
-
     public IEnumerable<Location> GenerateField()
     {
         var mineCount = random.Next(settings.MineCountRange!.Minimum, settings.MineCountRange.Maximum + 1);

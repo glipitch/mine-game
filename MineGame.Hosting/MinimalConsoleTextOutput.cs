@@ -3,15 +3,8 @@ using MineGame.Game.Models;
 
 namespace MineGame.Hosting;
 
-public class MinimalConsoleTextOutput
+public class MinimalConsoleTextOutput(ChessCoordinateConverter? coordinateConverter = null)
 {
-    private readonly ChessCoordinateConverter? coordinateConverter;
-
-    public MinimalConsoleTextOutput(ChessCoordinateConverter? coordinateConverter = null)
-    {
-        this.coordinateConverter = coordinateConverter;
-    }
-
     public string Convert(OutputEventArgs e) =>
         e.Output switch
         {
@@ -28,5 +21,5 @@ public class MinimalConsoleTextOutput
     public string ConvertCoordinates(Location location)
         => coordinateConverter == null
         ? location.ToString()
-        : coordinateConverter.Convert(location);
+        : ChessCoordinateConverter.Convert(location);
 }

@@ -1,7 +1,5 @@
 ﻿using MineGame.Game.Models;
 
-using System.Diagnostics.CodeAnalysis;
-
 namespace MineGame.Hosting;
 
 public class ChessCoordinateConverter
@@ -9,8 +7,7 @@ public class ChessCoordinateConverter
     private const int UpperCaseAUnicode = 65;
     private const int HighestColumnAllowed = 25;
 
-    [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "<Pending>")]
-    public string Convert(Location location)
+    public static string Convert(Location location)
     {
         if (location.Column > HighestColumnAllowed)
         {

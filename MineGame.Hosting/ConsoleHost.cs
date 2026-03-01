@@ -6,20 +6,9 @@ using static System.Console;
 
 namespace MineGame.Hosting;
 
-public class ConsoleHost
+public class ConsoleHost(GameEngine gameEngine, StandardKeyMap keyMap, MinimalConsoleTextOutput consoleTextOutput)
 {
-    private readonly GameEngine gameEngine;
-    private readonly StandardKeyMap keyMap;
-    private readonly MinimalConsoleTextOutput consoleTextOutput;
     private bool exit;
-
-    public ConsoleHost(GameEngine gameEngine, StandardKeyMap keyMap, MinimalConsoleTextOutput consoleTextOutput)
-    {
-        this.gameEngine = gameEngine;
-        this.keyMap = keyMap;
-        this.consoleTextOutput = consoleTextOutput;
-        this.gameEngine.OutputEmitted += HandleOutput!;
-    }
 
     private void HandleOutput(object sender, OutputEventArgs e)
     {
@@ -32,11 +21,12 @@ public class ConsoleHost
 
     public void Run()
     {
+        gameEngine.OutputEmitted += HandleOutput!;
         WriteLine(keyMap);
         gameEngine.Start();
         while (!exit)
         {
-            gameEngine.ReceiveInput(keyMap.Convert(ReadKey().Key));
+            gameEngine.ReceiveInput(StandardKeyMap.Convert(ReadKey(intercept: true).Key));
         }
     }
 }

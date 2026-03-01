@@ -1,28 +1,32 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-using MineGame.Game;
 using MineGame.Game.Settings;
 using MineGame.Hosting;
 
 var settings = new GameSettings
 {
     Dimensions = new Dimensions(Width: 8, Height: 8),
-    MineCountRange = new MineCountRange(Minimum: 8, Maximum: 12),
+    MineCountRange = new MineCountRange(Minimum: 15, Maximum: 20),
     Lives = 3
 };
 
-var serviceProvider = new ServiceCollection()
-    .AddSingleton(settings)
-    .AddSingleton<Random>()
-    .AddSingleton<Minelayer>()
-    .AddSingleton<PositionChecker>()
-    .AddSingleton<GameEngine>()
-    .AddSingleton<ChessCoordinateConverter>()
-    .AddSingleton<MinimalConsoleTextOutput>()
-    .AddSingleton<StandardKeyMap>()
-    .AddSingleton<ConsoleHost>()
-    .BuildServiceProvider();
+var serviceProviderOptions = new ServiceProviderOptions
+{
+    ValidateScopes = true,
+    ValidateOnBuild = true
+};
 
-var host = serviceProvider.GetService<ConsoleHost>();
+using var serviceProvider = new ServiceCollection()
+    .AddMineGame(settings)
+    .BuildServiceProvider(serviceProviderOptions);
 
-host!.Run();
+var host = serviceProvider.GetRequiredService<ConsoleHost>();
+try
+{
+    host.Run();
+}
+catch (Exception ex)
+{
+    Console.Error.WriteLine(ex);
+    Environment.ExitCode = 1;
+}

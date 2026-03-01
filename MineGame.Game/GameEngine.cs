@@ -4,26 +4,14 @@ using MineGame.Game.Settings;
 
 namespace MineGame.Game;
 
-public class GameEngine
+public class GameEngine(Random random, Minelayer minelayer, GameSettings settings, PositionChecker positionChecker)
 {
-    private readonly Minelayer minelayer;
-    private readonly GameSettings settings;
-    private readonly PositionChecker positionChecker;
-    private readonly Random random;
     private int moves;
     private int livesRemaining;
 
     private Location? location;
     private IEnumerable<Location>? mines;
     private bool gameOver;
-
-    public GameEngine(Random random, Minelayer minelayer, GameSettings settings, PositionChecker positionChecker)
-    {
-        this.random = random;
-        this.minelayer = minelayer;
-        this.settings = settings;
-        this.positionChecker = positionChecker;
-    }
 
     public event EventHandler<OutputEventArgs>? OutputEmitted;
 

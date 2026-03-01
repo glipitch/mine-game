@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="MineGame.App/MineGame.App.csproj" />
+  <Project Path="MineGame.Game/MineGame.Game.csproj" />
+  <Project Path="MineGame.Hosting/MineGame.Hosting.csproj" />
+  <Project Path="MineGame.Tests/MineGame.Tests.csproj" />
+</Solution>
